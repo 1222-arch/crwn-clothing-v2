@@ -3,6 +3,7 @@ import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "
 import FormInput from "../form-input/form-input.component";
 import './sign-up-form.styles.scss'
 import Button from "../button/button.component";
+ 
 
 const defaultFormFields= {
    displayName:'',
@@ -15,18 +16,19 @@ const SignUpForm =()=>{
      const [formFields, setFormFields] = useState(defaultFormFields);
      const  {displayName,email,password,confirmPassword} = formFields;
 
-
+      
+    
       console.log(formFields);
-      // DAY NHA AE
+
+      //DAY LA T VIET THEO YC LA XAU useContext trong SignUpForm nha
+       
       const resetFormFields  =()=>{
        setFormFields(defaultFormFields);
       }
        
       const handleSubmit = async (event) =>{
             event.preventDefault();
-          
-    //   Kiểm tra xem password có khớp confirmPassword không
-    // t auth pass vs confirmPass 
+         
        if(password !== confirmPassword){
         alert('passwords do not match')
          return ;
@@ -39,10 +41,13 @@ const SignUpForm =()=>{
              password,
             );
         
+           
         // DAY NHA
        // const user = response.user;
        await createUserDocumentFromAuth(user, {displayName})
       //  console.log('User created' , response);
+
+ 
         resetFormFields();
      }
      catch (error){
